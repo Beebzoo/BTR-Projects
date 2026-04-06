@@ -98,19 +98,30 @@
 
   aside{font-size:14px;color:var(--muted);position:sticky;top:96px;align-self:start}
   @media (max-width:920px){aside{position:static}}
-  .info-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:14px;overflow:hidden;transition:border-color .15s}
-  .info-card:hover{border-color:#cdd3dc}
-  .info-card summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:12px;font-weight:600;color:var(--navy);font-size:14px}
-  .info-card summary::-webkit-details-marker{display:none}
-  .info-card summary .ico{width:32px;height:32px;border-radius:8px;background:#f0f8fc;color:var(--accent);display:grid;place-items:center;flex-shrink:0;transition:background .15s}
-  .info-card summary .ico svg{width:16px;height:16px}
-  .info-card summary .chev{margin-left:auto;width:14px;height:14px;color:var(--muted);transition:transform .2s}
-  .info-card[open] summary .chev{transform:rotate(180deg)}
-  .info-card[open] summary .ico{background:var(--accent);color:#fff}
-  .info-card .body{padding:0 18px 18px 62px;font-size:13px;color:#4b5563;line-height:1.65}
-  .info-card .body ul{margin:6px 0 0;padding-left:18px}
-  .info-card .body li{margin-bottom:5px}
-  .info-card .body strong{color:var(--navy);font-weight:600}
+  .info-card{display:flex;align-items:center;gap:12px;width:100%;border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:14px;padding:16px 18px;font:600 14px var(--sans);color:var(--navy);text-align:left;cursor:pointer;transition:all .15s}
+  .info-card:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 8px 24px -16px rgba(0,28,61,.3)}
+  .info-card .ico{width:32px;height:32px;border-radius:8px;background:#f0f8fc;color:var(--accent);display:grid;place-items:center;flex-shrink:0;transition:background .15s}
+  .info-card .ico svg{width:16px;height:16px}
+  .info-card .lbl{flex:1}
+  .info-card .chev{width:14px;height:14px;color:var(--muted);flex-shrink:0;transition:transform .15s}
+  .info-card:hover .chev{transform:translateX(3px);color:var(--accent)}
+  .info-card:hover .ico{background:var(--accent);color:#fff}
+
+  .info-overlay{position:fixed;inset:0;background:rgba(0,28,61,.55);backdrop-filter:blur(3px);z-index:100;opacity:0;pointer-events:none;transition:opacity .2s}
+  .info-overlay.active{opacity:1;pointer-events:auto}
+  .info-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%);width:min(560px,calc(100vw - 32px));max-height:82vh;background:#fff;border-radius:14px;z-index:101;opacity:0;pointer-events:none;transition:all .2s;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,28,61,.5)}
+  .info-modal.active{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+  .info-modal .head{padding:22px 26px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}
+  .info-modal .head .ico{width:38px;height:38px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;flex-shrink:0}
+  .info-modal .head .ico svg{width:18px;height:18px}
+  .info-modal .head h3{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--navy);margin:0;letter-spacing:-.01em}
+  .info-modal .close{margin-left:auto;background:none;border:0;font-size:24px;color:var(--muted);cursor:pointer;line-height:1;padding:0 4px}
+  .info-modal .close:hover{color:var(--navy)}
+  .info-modal .body{padding:20px 26px 26px;overflow-y:auto;font-size:14.5px;color:#374151;line-height:1.65}
+  .info-modal .body ul{margin:8px 0;padding-left:20px}
+  .info-modal .body li{margin-bottom:6px}
+  .info-modal .body strong{color:var(--navy);font-weight:600}
+  .info-modal .body a{color:var(--accent)}
 
   footer{background:var(--navy);color:#cfd6e1;border-top:3px solid var(--accent)}
   .footer-inner{max-width:var(--max);margin:0 auto;padding:38px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -291,103 +302,31 @@
   </div>
 
   <aside>
-    <details class="info-card" open>
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 7.6l-3.8 3.7.9 5.24L12 14l-5.1 2.54.9-5.24L4 7.6l5.61-.76L12 2z"/></svg></span>
-        What makes a good BTR project
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        <ul>
-          <li>A clear, focused research question feasible in ~5 months</li>
-          <li>A realistic methodology with alternative approaches</li>
-          <li>Genuine learning opportunities for a bachelor student</li>
-          <li>Connection to current scientific literature</li>
-          <li>Brief consideration of ethical issues</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-        BTR at a glance
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        30 ECTS · one full semester · independent research under supervision. Students need ≥145 ECTS to start. Deliverables: a research proposal (&lt;2,000 words, ≥15 peer-reviewed citations, due ~4 weeks after start), a written thesis (&lt;15,000 words excl. references) and a 5–7 minute video presentation.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></span>
-        Assessment &amp; grading
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        Five components, graded on the Dutch 1.0–10.0 scale (pass: weighted average ≥ 5.5):
-        <ul>
-          <li><strong>Proposal</strong> (15%) — Supervisor + Internal Advisor</li>
-          <li><strong>Midpoint practical</strong> (15%) — Supervisor only</li>
-          <li><strong>Written thesis</strong> (25%) — Supervisor + Internal Advisor</li>
-          <li><strong>Final practical</strong> (35%) — Supervisor only (incl. research group presentation)</li>
-          <li><strong>Video</strong> (10%) — Internal Advisor + peer student</li>
-        </ul>
-        Supervisors grade four of the five components. Feedback on written work is limited to <strong>one draft</strong> of the proposal and <strong>one draft</strong> of the thesis to keep a level playing field. All grading is handled via <strong>Collent</strong>.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        Where BTRs take place
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        Within Maastricht University, at other Dutch institutions, or at international universities and research centres. External hosts require an Internal Advisor from MSP/UM.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-        Roles in a BTR
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        <ul>
-          <li><strong>Research Supervisor</strong> — primary point of contact; guides the research and grades the proposal, midpoint practical, thesis and final practical. PhD generally expected.</li>
-          <li><strong>Internal Advisor</strong> — MSP/allied staff member appointed by the BTR Coordinator; safeguards academic standards and co-grades the proposal and thesis. Not necessarily a subject expert.</li>
-          <li><strong>BTR Coordinator</strong> — Dr. Panos Christakoglou; oversees programme quality and handles special circumstances.</li>
-          <li><strong>BTR Administrator</strong> — Martijn Jeurissen; day-to-day administration and first point of contact.</li>
-        </ul>
-        If supervisor and advisor grades differ by more than 1.5, the BTR Office asks both to discuss and reach consensus.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
-        A note for students
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        Listed projects are suggestions, not the full set of opportunities. You are always encouraged to reach out to supervisors directly with your own ideas.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span>
-        Contact the BTR office
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a><br>
-        Maastricht Science Programme, Maastricht University.
-      </div>
-    </details>
+    <button class="info-card" type="button" data-info="good">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 7.6l-3.8 3.7.9 5.24L12 14l-5.1 2.54.9-5.24L4 7.6l5.61-.76L12 2z"/></svg></span>
+      <span class="lbl">What makes a good BTR project</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <button class="info-card" type="button" data-info="glance">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+      <span class="lbl">BTR at a glance</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <button class="info-card" type="button" data-info="grading">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></span>
+      <span class="lbl">Assessment &amp; grading</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <button class="info-card" type="button" data-info="roles">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="lbl">Roles in a BTR</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <button class="info-card" type="button" data-info="contact">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span>
+      <span class="lbl">Contact the BTR office</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
   </aside>
 </main>
 
@@ -399,7 +338,61 @@
   </div>
 </footer>
 
+<div class="info-overlay" id="info-overlay" onclick="closeInfo()"></div>
+<div class="info-modal" id="info-modal" role="dialog" aria-modal="true">
+  <div class="head">
+    <span class="ico" id="info-ico"></span>
+    <h3 id="info-title"></h3>
+    <button class="close" onclick="closeInfo()" aria-label="Close">×</button>
+  </div>
+  <div class="body" id="info-body"></div>
+</div>
+
 <script>
+  const INFO = {
+    good: {
+      title: "What makes a good BTR project",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 7.6l-3.8 3.7.9 5.24L12 14l-5.1 2.54.9-5.24L4 7.6l5.61-.76L12 2z"/></svg>',
+      body: '<ul><li>A clear, focused research question feasible in ~5 months</li><li>A realistic methodology with alternative approaches</li><li>Genuine learning opportunities for a bachelor student</li><li>Connection to current scientific literature</li><li>Brief consideration of ethical issues</li></ul>'
+    },
+    glance: {
+      title: "BTR at a glance",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+      body: '<p>30 ECTS · one full semester · independent research under supervision. Students need ≥145 ECTS to start.</p><p><strong>Deliverables:</strong> a research proposal (&lt;2,000 words, ≥15 peer-reviewed citations, due ~4 weeks after start), a written thesis (&lt;15,000 words excluding references) and a 5–7 minute video presentation.</p>'
+    },
+    grading: {
+      title: "Assessment & grading",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>',
+      body: '<p>Five components, graded on the Dutch 1.0–10.0 scale (pass: weighted average ≥ 5.5):</p><ul><li><strong>Proposal</strong> (15%) — Supervisor + Internal Advisor</li><li><strong>Midpoint practical</strong> (15%) — Supervisor only</li><li><strong>Written thesis</strong> (25%) — Supervisor + Internal Advisor</li><li><strong>Final practical</strong> (35%) — Supervisor only (incl. research group presentation)</li><li><strong>Video</strong> (10%) — Internal Advisor + peer student</li></ul><p>Supervisors grade four of the five components. Feedback on written work is limited to <strong>one draft</strong> of the proposal and <strong>one draft</strong> of the thesis to keep a level playing field. All grading is handled via <strong>Collent</strong>.</p>'
+    },
+    roles: {
+      title: "Roles in a BTR",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      body: '<ul><li><strong>Research Supervisor</strong> — primary point of contact; guides the research and grades the proposal, midpoint practical, thesis and final practical. PhD generally expected.</li><li><strong>Internal Advisor</strong> — MSP/allied staff member appointed by the BTR Coordinator; safeguards academic standards and co-grades the proposal and thesis. Not necessarily a subject expert.</li><li><strong>BTR Coordinator</strong> — Dr. Panos Christakoglou; oversees programme quality and handles special circumstances.</li><li><strong>BTR Administrator</strong> — Martijn Jeurissen; day-to-day administration and first point of contact.</li></ul><p>If supervisor and advisor grades differ by more than 1.5, the BTR Office asks both to discuss and reach consensus.</p>'
+    },
+    contact: {
+      title: "Contact the BTR office",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>',
+      body: '<p><a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a><br>Maastricht Science Programme, Maastricht University.</p>'
+    }
+  };
+  function openInfo(key){
+    const i = INFO[key]; if (!i) return;
+    document.getElementById('info-ico').innerHTML = i.icon;
+    document.getElementById('info-title').textContent = i.title;
+    document.getElementById('info-body').innerHTML = i.body;
+    document.getElementById('info-overlay').classList.add('active');
+    document.getElementById('info-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInfo(){
+    document.getElementById('info-overlay').classList.remove('active');
+    document.getElementById('info-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.info-card[data-info]').forEach(c => c.addEventListener('click', () => openInfo(c.dataset.info)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfo(); });
+
   const desc = document.getElementById('description');
   const counter = document.getElementById('counter');
   desc.addEventListener('input', () => {
