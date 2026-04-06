@@ -207,23 +207,6 @@
         </legend>
         <div class="row">
           <div class="field">
-            <label for="discipline">Scientific discipline <span class="req">*</span></label>
-            <select id="discipline" name="discipline" required>
-              <option value="">Select a discipline…</option>
-              <option>Bioinformatics</option>
-              <option>Biomedical Sciences</option>
-              <option>Biotechnology</option>
-              <option>Chemistry</option>
-              <option>Ecology &amp; Fieldwork</option>
-              <option>Materials Science</option>
-              <option>Neuroscience</option>
-              <option>Physics</option>
-              <option>Sustainability</option>
-              <option>Interdisciplinary</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="field">
             <label for="cohort">Preferred cohort <span class="req">*</span></label>
             <select id="cohort" name="cohort" required>
               <option value="">Select a cohort…</option>
@@ -234,6 +217,22 @@
           </div>
         </div>
         <div class="field">
+          <label>Scientific discipline(s) <span class="req">*</span></label>
+          <div class="checks" id="disciplines">
+            <label><input type="checkbox" name="discipline" value="Bioinformatics"> Bioinformatics</label>
+            <label><input type="checkbox" name="discipline" value="Biomedical Sciences"> Biomedical Sciences</label>
+            <label><input type="checkbox" name="discipline" value="Biotechnology"> Biotechnology</label>
+            <label><input type="checkbox" name="discipline" value="Chemistry"> Chemistry</label>
+            <label><input type="checkbox" name="discipline" value="Ecology & Fieldwork"> Ecology &amp; Fieldwork</label>
+            <label><input type="checkbox" name="discipline" value="Materials Science"> Materials Science</label>
+            <label><input type="checkbox" name="discipline" value="Neuroscience"> Neuroscience</label>
+            <label><input type="checkbox" name="discipline" value="Physics"> Physics</label>
+            <label><input type="checkbox" name="discipline" value="Sustainability"> Sustainability</label>
+            <label><input type="checkbox" name="discipline" value="Other"> Other</label>
+          </div>
+          <div class="hint">Select all that apply — interdisciplinary projects can span multiple disciplines.</div>
+        </div>
+        <div class="field">
           <label>Project type <span class="req">*</span></label>
           <div class="checks" id="types">
             <label><input type="checkbox" name="project_type" value="Experimental"> Experimental</label>
@@ -242,6 +241,11 @@
             <label><input type="checkbox" name="project_type" value="Literature Review"> Literature Review</label>
           </div>
           <div class="hint">Select all that apply.</div>
+        </div>
+        <div class="field">
+          <label for="subspecialization">Sub-specialisation</label>
+          <input id="subspecialization" name="subspecialization" type="text" placeholder="e.g. quantum optics, organic synthesis, axiomatic systems">
+          <div class="hint">Optional. A more specific area within the discipline, used for finer student filtering.</div>
         </div>
       </fieldset>
 
@@ -263,6 +267,11 @@
           <label for="keywords">Keywords</label>
           <input id="keywords" name="keywords" type="text" placeholder="e.g. CRISPR, machine learning, protein folding">
           <div class="hint">Comma-separated. 5–10 keywords work best for searchability.</div>
+        </div>
+        <div class="field">
+          <label for="references">Key references</label>
+          <textarea id="references" name="references" style="min-height:90px" placeholder="Optional. Relevant papers or background reading (one per line, or formatted as you prefer)."></textarea>
+          <div class="hint">Optional.</div>
         </div>
         <div class="field">
           <label for="additional">Additional information</label>
@@ -406,9 +415,12 @@
     e.preventDefault();
     ok.style.display = err.style.display = 'none';
 
-    const checked = form.querySelectorAll('input[name="project_type"]:checked').length;
-    if (!form.checkValidity() || checked === 0) {
-      err.textContent = checked === 0 ? 'Please select at least one project type.' : 'Please complete the required fields.';
+    const checkedTypes = form.querySelectorAll('input[name="project_type"]:checked').length;
+    const checkedDisc = form.querySelectorAll('input[name="discipline"]:checked').length;
+    if (!form.checkValidity() || checkedTypes === 0 || checkedDisc === 0) {
+      err.textContent = checkedDisc === 0 ? 'Please select at least one scientific discipline.'
+                      : checkedTypes === 0 ? 'Please select at least one project type.'
+                      : 'Please complete the required fields.';
       err.style.display = 'block';
       window.scrollTo({top: form.offsetTop - 40, behavior:'smooth'});
       return;
