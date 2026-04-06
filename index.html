@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Submit a BTR Project — Maastricht Science Programme</title>
-<meta name="description" content="Submit a Bachelor Thesis Research (BTR) project proposal for students of the Maastricht Science Programme.">
+<title>BTR Projects — Maastricht Science Programme</title>
+<meta name="description" content="The Bachelor Thesis Research project hub for the Maastricht Science Programme. Supervisors can submit projects; students can browse them.">
 <link rel="icon" type="image/png" href="msp-logo.png">
 <link rel="apple-touch-icon" href="msp-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,8 +27,7 @@
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:var(--navy);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-  a:hover{color:var(--accent)}
+  a{color:var(--navy);text-decoration:none}
 
   .topbar{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.92)}
   .topbar-inner{max-width:var(--max);margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -36,83 +35,45 @@
   .logos img{display:block;height:44px;width:auto}
   .logos .divider{width:1px;height:34px;background:var(--line)}
   .topbar nav{font-size:13.5px;color:var(--muted);display:flex;gap:26px}
-  .topbar nav a{color:var(--muted);text-decoration:none;font-weight:500;letter-spacing:.01em}
+  .topbar nav a{color:var(--muted);font-weight:500;letter-spacing:.01em}
   .topbar nav a:hover{color:var(--navy)}
 
   .hero{background:linear-gradient(180deg,#001C3D 0%, #002a55 100%);color:#fff;border-bottom:3px solid var(--accent);position:relative;overflow:hidden}
   .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 85% 20%, rgba(0,162,219,.18), transparent 55%);pointer-events:none}
-  .hero-inner{max-width:var(--max);margin:0 auto;padding:80px 28px 72px;position:relative}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:600;color:var(--accent);margin-bottom:18px}
+  /* subtle scientific molecule pattern */
+  .hero svg.pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.09;pointer-events:none}
+  .hero-inner{max-width:var(--max);margin:0 auto;padding:96px 28px 88px;position:relative;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:600;color:var(--accent);margin-bottom:22px}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(0,162,219,.18)}
-  .hero h1{font-family:var(--serif);font-weight:500;font-size:52px;line-height:1.08;margin:0 0 18px;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
-  .hero p{max-width:640px;font-size:17px;color:#cfd6e1;margin:0 0 28px;line-height:1.6}
-  .hero .cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#001C3D;padding:13px 22px;border-radius:6px;font-weight:600;font-size:14px;text-decoration:none;transition:transform .15s, box-shadow .15s}
-  .hero .cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,162,219,.25)}
-  .hero .cta svg{width:16px;height:16px}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:60px;line-height:1.05;margin:0 0 20px;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .hero p.lead{max-width:640px;margin:0 auto 0;font-size:18px;color:#cfd6e1;line-height:1.6}
 
-  main{max-width:var(--max);margin:0 auto;padding:64px 28px 90px;display:grid;grid-template-columns:1fr 320px;gap:60px}
-  @media (max-width:920px){main{grid-template-columns:1fr;gap:48px;padding:48px 22px 70px}.hero-inner{padding:60px 22px 52px}.hero h1{font-size:38px}}
+  main{max-width:var(--max);margin:0 auto;padding:80px 28px 60px}
+  @media (max-width:760px){main{padding:56px 22px 40px}.hero h1{font-size:40px}.hero-inner{padding:64px 22px 60px}}
 
-  section.intro{margin-bottom:48px}
-  section.intro h2{font-family:var(--serif);font-size:28px;color:var(--navy);margin:0 0 14px;font-weight:500;letter-spacing:-.01em}
-  section.intro p{margin:0 0 14px;color:#374151;font-size:15.5px}
+  .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:760px){.choice-grid{grid-template-columns:1fr}}
+  .choice{display:block;border:1px solid var(--line);border-radius:14px;padding:36px 32px;background:#fff;transition:all .2s;position:relative;overflow:hidden}
+  .choice::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .25s}
+  .choice:hover{border-color:#cdd3dc;transform:translateY(-3px);box-shadow:0 14px 40px -18px rgba(0,28,61,.25)}
+  .choice:hover::before{transform:scaleY(1)}
+  .choice .ico{width:52px;height:52px;border-radius:12px;background:#f0f8fc;color:var(--accent);display:grid;place-items:center;margin-bottom:22px}
+  .choice .ico svg{width:26px;height:26px}
+  .choice h2{font-family:var(--serif);font-weight:500;font-size:26px;color:var(--navy);margin:0 0 10px;letter-spacing:-.01em}
+  .choice p{margin:0 0 22px;color:#4b5563;font-size:14.5px;line-height:1.6}
+  .choice .arrow{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--navy);letter-spacing:.01em}
+  .choice .arrow svg{width:14px;height:14px;transition:transform .2s}
+  .choice:hover .arrow svg{transform:translateX(4px)}
+  .choice:hover .arrow{color:var(--accent)}
 
-  .cohorts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
-  @media (max-width:600px){.cohorts{grid-template-columns:1fr}}
-  .cohort{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:var(--bg-soft);display:flex;gap:14px;align-items:flex-start}
-  .cohort .ico{width:36px;height:36px;flex-shrink:0;border-radius:8px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--accent)}
-  .cohort .ico svg{width:18px;height:18px}
-  .cohort h4{margin:0 0 4px;font-size:14px;color:var(--navy);font-weight:600}
-  .cohort p{margin:0;font-size:13px;color:var(--muted);line-height:1.55}
+  .strip{max-width:var(--max);margin:24px auto 0;padding:0 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  @media (max-width:760px){.strip{grid-template-columns:repeat(2,1fr);padding:0 22px}}
+  .stat{text-align:center;padding:22px 8px;border-top:1px solid var(--line)}
+  .stat .num{font-family:var(--serif);font-size:34px;font-weight:500;color:var(--navy);line-height:1;display:block;margin-bottom:6px}
+  .stat .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
 
-  form{margin-top:8px}
-  fieldset{border:0;padding:0;margin:0 0 40px}
-  legend{font-family:var(--serif);font-size:20px;color:var(--navy);font-weight:500;padding:0 0 12px;margin-bottom:20px;border-bottom:1px solid var(--line);width:100%;display:flex;align-items:center;gap:10px}
-  legend svg{width:18px;height:18px;color:var(--accent)}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  @media (max-width:600px){.row{grid-template-columns:1fr}}
-  .field{margin-bottom:18px}
-  label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
-  label .req{color:#c0392b;margin-left:2px}
-  .hint{font-size:12px;color:var(--muted);margin-top:5px}
-  input[type=text],input[type=email],select,textarea{width:100%;font:inherit;font-size:14.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;transition:border-color .15s, box-shadow .15s}
-  textarea{min-height:170px;resize:vertical;line-height:1.6}
-  input::placeholder,textarea::placeholder{color:#9aa3b2}
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,162,219,.16)}
-  .checks{display:flex;flex-wrap:wrap;gap:10px}
-  .checks label{display:flex;align-items:center;gap:9px;font-weight:500;color:var(--ink);border:1px solid var(--line);padding:10px 16px;border-radius:6px;cursor:pointer;background:#fff;transition:all .15s;font-size:14px}
-  .checks input{accent-color:var(--accent)}
-  .checks label:hover{border-color:var(--accent);background:#f5fbfd}
-  .counter{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}
-  .counter.over{color:#c0392b}
-
-  button[type=submit]{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;border:0;padding:14px 28px;font:600 14.5px var(--sans);border-radius:6px;cursor:pointer;letter-spacing:.01em;transition:background .15s, transform .15s}
-  button[type=submit]:hover{background:var(--accent);transform:translateY(-1px)}
-  button[type=submit] svg{width:15px;height:15px}
-  .form-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px;flex-wrap:wrap}
-  .form-footer .note{font-size:12px;color:var(--muted)}
-
-  .success,.error{display:none;padding:16px 18px;border-radius:var(--radius);margin-bottom:24px;font-size:14px}
-  .success{background:#eafaf3;border-left:3px solid #1e9e6a;color:#0f5d3f}
-  .error{background:#fdecea;border-left:3px solid #c0392b;color:#7a1f15}
-
-  aside{font-size:14px;color:var(--muted);position:sticky;top:96px;align-self:start}
-  @media (max-width:920px){aside{position:static}}
-  .info-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:14px;overflow:hidden;transition:border-color .15s}
-  .info-card:hover{border-color:#cdd3dc}
-  .info-card summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:12px;font-weight:600;color:var(--navy);font-size:14px}
-  .info-card summary::-webkit-details-marker{display:none}
-  .info-card summary .ico{width:32px;height:32px;border-radius:8px;background:#f0f8fc;color:var(--accent);display:grid;place-items:center;flex-shrink:0;transition:background .15s}
-  .info-card summary .ico svg{width:16px;height:16px}
-  .info-card summary .chev{margin-left:auto;width:14px;height:14px;color:var(--muted);transition:transform .2s}
-  .info-card[open] summary .chev{transform:rotate(180deg)}
-  .info-card[open] summary .ico{background:var(--accent);color:#fff}
-  .info-card .body{padding:0 18px 18px 62px;font-size:13px;color:#4b5563;line-height:1.65}
-  .info-card .body ul{margin:6px 0 0;padding-left:18px}
-  .info-card .body li{margin-bottom:5px}
-  .info-card .body strong{color:var(--navy);font-weight:600}
-
-  footer{background:var(--navy);color:#cfd6e1;border-top:3px solid var(--accent)}
+  footer{background:var(--navy);color:#cfd6e1;border-top:3px solid var(--accent);margin-top:80px}
   .footer-inner{max-width:var(--max);margin:0 auto;padding:38px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
   .footer-inner img{height:38px;width:auto;filter:brightness(0) invert(1);opacity:.95}
   .footer-inner .contact{font-size:14px}
@@ -130,264 +91,68 @@
       <img src="msp-logo.png" alt="Maastricht Science Programme">
     </div>
     <nav>
-      <a href="#about">About</a>
-      <a href="#submit">Submit</a>
+      <a href="index.html">Home</a>
+      <a href="submit.html">For Supervisors</a>
+      <a href="projects.html">For Students</a>
       <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
+  <!-- subtle molecular / lattice pattern -->
+  <svg class="pattern" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="hex" width="80" height="70" patternUnits="userSpaceOnUse">
+        <polygon points="40,2 76,22 76,52 40,72 4,52 4,22" fill="none" stroke="#00A2DB" stroke-width="1"/>
+        <circle cx="40" cy="2" r="2" fill="#00A2DB"/>
+        <circle cx="76" cy="22" r="2" fill="#00A2DB"/>
+        <circle cx="76" cy="52" r="2" fill="#00A2DB"/>
+        <circle cx="40" cy="72" r="2" fill="#00A2DB"/>
+        <circle cx="4" cy="22" r="2" fill="#00A2DB"/>
+        <circle cx="4" cy="52" r="2" fill="#00A2DB"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="600" fill="url(#hex)"/>
+  </svg>
   <div class="hero-inner">
     <div class="eyebrow"><span class="dot"></span> Bachelor Thesis Research · Maastricht Science Programme</div>
-    <h1>Propose a BTR project</h1>
-    <p>A short, structured form for research supervisors to share project proposals with Maastricht Science Programme students preparing for their Bachelor Thesis Research.</p>
-    <a href="#submit" class="cta">
-      Start submission
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
+    <h1>Where MSP students<br>meet their <em>research</em>.</h1>
+    <p class="lead">The central hub for Bachelor Thesis Research projects at the Maastricht Science Programme. Supervisors share opportunities; students discover them.</p>
   </div>
 </section>
 
 <main>
-  <div>
-    <section class="intro" id="about">
-      <h2>About the Bachelor Thesis Research</h2>
-      <p>The Bachelor Thesis Research (BTR) is the final academic component of the Maastricht Science Programme: a 30 ECTS, one-semester independent research project carried out under supervision of an experienced researcher. Students join a research group, design and execute their own work, and produce a written thesis and short video presentation.</p>
-      <p>Submissions made through this form are forwarded to the BTR office and used to build a curated list of opportunities for students. Listed projects are <em>suggestions</em>: students are always encouraged to also reach out to supervisors with their own ideas.</p>
-
-      <div class="cohorts">
-        <div class="cohort">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-          <div>
-            <h4>September Cohort</h4>
-            <p>Start of September → 31 January</p>
-          </div>
-        </div>
-        <div class="cohort">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-          <div>
-            <h4>February Cohort</h4>
-            <p>Start of February → 30 June</p>
-          </div>
-        </div>
+  <div class="choice-grid">
+    <a class="choice" href="submit.html">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg>
       </div>
-    </section>
+      <h2>For supervisors</h2>
+      <p>Propose a new BTR project for MSP students. A short, structured form sends your proposal directly to the BTR office.</p>
+      <span class="arrow">Submit a project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </span>
+    </a>
 
-    <form id="btr-form" action="https://formspree.io/f/mreoryay" method="POST" novalidate>
-
-      <div class="success" id="success">Thank you — your project has been submitted. The BTR office will be in touch if anything is unclear.</div>
-      <div class="error" id="error">Something went wrong. Please check the highlighted fields and try again.</div>
-
-      <fieldset id="submit">
-        <legend>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Supervisor
-        </legend>
-        <div class="row">
-          <div class="field">
-            <label for="name">Full name <span class="req">*</span></label>
-            <input id="name" name="name" type="text" required>
-          </div>
-          <div class="field">
-            <label for="email">Email <span class="req">*</span></label>
-            <input id="email" name="email" type="email" required>
-          </div>
-        </div>
-        <div class="field">
-          <label for="department">Faculty / Department <span class="req">*</span></label>
-          <input id="department" name="department" type="text" required placeholder="e.g. Faculty of Science and Engineering — Department of Physics">
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
-          Classification
-        </legend>
-        <div class="row">
-          <div class="field">
-            <label for="cohort">Preferred cohort <span class="req">*</span></label>
-            <select id="cohort" name="cohort" required>
-              <option value="">Select a cohort…</option>
-              <option>Both September and February</option>
-              <option>September only</option>
-              <option>February only</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label>Scientific discipline(s) <span class="req">*</span></label>
-          <div class="checks" id="disciplines">
-            <label><input type="checkbox" name="discipline" value="Bioinformatics"> Bioinformatics</label>
-            <label><input type="checkbox" name="discipline" value="Biomedical Sciences"> Biomedical Sciences</label>
-            <label><input type="checkbox" name="discipline" value="Biotechnology"> Biotechnology</label>
-            <label><input type="checkbox" name="discipline" value="Chemistry"> Chemistry</label>
-            <label><input type="checkbox" name="discipline" value="Ecology & Fieldwork"> Ecology &amp; Fieldwork</label>
-            <label><input type="checkbox" name="discipline" value="Materials Science"> Materials Science</label>
-            <label><input type="checkbox" name="discipline" value="Neuroscience"> Neuroscience</label>
-            <label><input type="checkbox" name="discipline" value="Physics"> Physics</label>
-            <label><input type="checkbox" name="discipline" value="Sustainability"> Sustainability</label>
-            <label><input type="checkbox" name="discipline" value="Other"> Other</label>
-          </div>
-          <div class="hint">Select all that apply — interdisciplinary projects can span multiple disciplines.</div>
-        </div>
-        <div class="field">
-          <label>Project type <span class="req">*</span></label>
-          <div class="checks" id="types">
-            <label><input type="checkbox" name="project_type" value="Experimental"> Experimental</label>
-            <label><input type="checkbox" name="project_type" value="Theoretical"> Theoretical</label>
-            <label><input type="checkbox" name="project_type" value="Computational"> Computational</label>
-            <label><input type="checkbox" name="project_type" value="Literature Review"> Literature Review</label>
-          </div>
-          <div class="hint">Select all that apply.</div>
-        </div>
-        <div class="field">
-          <label for="subspecialization">Sub-specialisation</label>
-          <input id="subspecialization" name="subspecialization" type="text" placeholder="e.g. quantum optics, organic synthesis, axiomatic systems">
-          <div class="hint">Optional. A more specific area within the discipline, used for finer student filtering.</div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-          Project
-        </legend>
-        <div class="field">
-          <label for="title">Project title <span class="req">*</span></label>
-          <input id="title" name="title" type="text" required>
-        </div>
-        <div class="field">
-          <label for="description">Project description <span class="req">*</span></label>
-          <textarea id="description" name="description" required placeholder="Background, research question, methodology, expected outcomes, and what the student will learn."></textarea>
-          <div class="counter" id="counter">0 words · target 200–500</div>
-        </div>
-        <div class="field">
-          <label for="keywords">Keywords</label>
-          <input id="keywords" name="keywords" type="text" placeholder="e.g. CRISPR, machine learning, protein folding">
-          <div class="hint">Comma-separated. 5–10 keywords work best for searchability.</div>
-        </div>
-        <div class="field">
-          <label for="references">Key references</label>
-          <textarea id="references" name="references" style="min-height:90px" placeholder="Optional. Relevant papers or background reading (one per line, or formatted as you prefer)."></textarea>
-          <div class="hint">Optional.</div>
-        </div>
-        <div class="field">
-          <label for="additional">Additional information</label>
-          <textarea id="additional" name="additional" style="min-height:100px"></textarea>
-        </div>
-      </fieldset>
-
-      <div class="form-footer">
-        <span class="note">Submissions are sent to msp-btr@maastrichtuniversity.nl.</span>
-        <button type="submit">
-          Submit project
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </button>
+    <a class="choice" href="projects.html">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       </div>
-    </form>
+      <h2>For students</h2>
+      <p>Browse research projects offered by MSP supervisors and partner institutions. Filter by discipline, type, and topic to find your thesis.</p>
+      <span class="arrow">Browse projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </span>
+    </a>
   </div>
 
-  <aside>
-    <details class="info-card" open>
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 7.6l-3.8 3.7.9 5.24L12 14l-5.1 2.54.9-5.24L4 7.6l5.61-.76L12 2z"/></svg></span>
-        What makes a good BTR project
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        <ul>
-          <li>A clear, focused research question feasible in ~5 months</li>
-          <li>A realistic methodology with alternative approaches</li>
-          <li>Genuine learning opportunities for a bachelor student</li>
-          <li>Connection to current scientific literature</li>
-          <li>Brief consideration of ethical issues</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-        BTR at a glance
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        30 ECTS · one full semester · independent research under supervision. Students need ≥145 ECTS to start. Deliverables: a research proposal (&lt;2,000 words, ≥15 peer-reviewed citations, due ~4 weeks after start), a written thesis (&lt;15,000 words excl. references) and a 5–7 minute video presentation.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></span>
-        Assessment &amp; grading
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        Five components, graded on the Dutch 1.0–10.0 scale (pass: weighted average ≥ 5.5):
-        <ul>
-          <li><strong>Proposal</strong> (15%) — Supervisor + Internal Advisor</li>
-          <li><strong>Midpoint practical</strong> (15%) — Supervisor only</li>
-          <li><strong>Written thesis</strong> (25%) — Supervisor + Internal Advisor</li>
-          <li><strong>Final practical</strong> (35%) — Supervisor only (incl. research group presentation)</li>
-          <li><strong>Video</strong> (10%) — Internal Advisor + peer student</li>
-        </ul>
-        Supervisors grade four of the five components. Feedback on written work is limited to <strong>one draft</strong> of the proposal and <strong>one draft</strong> of the thesis to keep a level playing field. All grading is handled via <strong>Collent</strong>.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        Where BTRs take place
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        Within Maastricht University, at other Dutch institutions, or at international universities and research centres. External hosts require an Internal Advisor from MSP/UM.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-        Roles in a BTR
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        <ul>
-          <li><strong>Research Supervisor</strong> — primary point of contact; guides the research and grades the proposal, midpoint practical, thesis and final practical. PhD generally expected.</li>
-          <li><strong>Internal Advisor</strong> — MSP/allied staff member appointed by the BTR Coordinator; safeguards academic standards and co-grades the proposal and thesis. Not necessarily a subject expert.</li>
-          <li><strong>BTR Coordinator</strong> — Dr. Panos Christakoglou; oversees programme quality and handles special circumstances.</li>
-          <li><strong>BTR Administrator</strong> — Martijn Jeurissen; day-to-day administration and first point of contact.</li>
-        </ul>
-        If supervisor and advisor grades differ by more than 1.5, the BTR Office asks both to discuss and reach consensus.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
-        A note for students
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        Listed projects are suggestions, not the full set of opportunities. You are always encouraged to reach out to supervisors directly with your own ideas.
-      </div>
-    </details>
-
-    <details class="info-card">
-      <summary>
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span>
-        Contact the BTR office
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="body">
-        <a href="mailto:msp-btr@maastrichtuniversity.nl">msp-btr@maastrichtuniversity.nl</a><br>
-        Maastricht Science Programme, Maastricht University.
-      </div>
-    </details>
-  </aside>
+  <div class="strip">
+    <div class="stat"><span class="num">30</span><span class="lbl">ECTS</span></div>
+    <div class="stat"><span class="num">1</span><span class="lbl">Semester</span></div>
+    <div class="stat"><span class="num">5</span><span class="lbl">Components</span></div>
+    <div class="stat"><span class="num">∞</span><span class="lbl">Directions</span></div>
+  </div>
 </main>
 
 <footer>
@@ -398,47 +163,5 @@
   </div>
 </footer>
 
-<script>
-  const desc = document.getElementById('description');
-  const counter = document.getElementById('counter');
-  desc.addEventListener('input', () => {
-    const words = desc.value.trim().split(/\s+/).filter(Boolean).length;
-    counter.textContent = words + ' words · target 200–500';
-    counter.classList.toggle('over', words > 500);
-  });
-
-  const form = document.getElementById('btr-form');
-  const ok = document.getElementById('success');
-  const err = document.getElementById('error');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    ok.style.display = err.style.display = 'none';
-
-    const checkedTypes = form.querySelectorAll('input[name="project_type"]:checked').length;
-    const checkedDisc = form.querySelectorAll('input[name="discipline"]:checked').length;
-    if (!form.checkValidity() || checkedTypes === 0 || checkedDisc === 0) {
-      err.textContent = checkedDisc === 0 ? 'Please select at least one scientific discipline.'
-                      : checkedTypes === 0 ? 'Please select at least one project type.'
-                      : 'Please complete the required fields.';
-      err.style.display = 'block';
-      window.scrollTo({top: form.offsetTop - 40, behavior:'smooth'});
-      return;
-    }
-
-    try {
-      const res = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
-      if (res.ok) {
-        form.reset();
-        counter.textContent = '0 words · target 200–500';
-        ok.style.display = 'block';
-        window.scrollTo({top: form.offsetTop - 40, behavior:'smooth'});
-      } else { throw new Error('Submission failed'); }
-    } catch (e) {
-      err.textContent = 'Something went wrong sending the form. Please try again or email msp-btr@maastrichtuniversity.nl.';
-      err.style.display = 'block';
-    }
-  });
-</script>
 </body>
 </html>
