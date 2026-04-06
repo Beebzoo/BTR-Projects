@@ -5,7 +5,7 @@
    To add a new project, copy one of the existing entries below, paste it
    just before the closing  ];  and edit the fields.
 
-   FULL INSTRUCTIONS: open instructions.html in the browser.
+   FULL INSTRUCTIONS: see README.md in the repo root.
 
    ----------------------------------------------------------------------------
    FIELDS (each project is a JavaScript object inside { ... }):
