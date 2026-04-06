@@ -1,3 +1,34 @@
+<!--
+  ============================================================================
+  submit.html — SUPERVISOR PROJECT SUBMISSION FORM
+  ============================================================================
+  This page is ONLY for supervisors. Students never see this page.
+
+  WHAT IT DOES:
+    A supervisor fills in a form describing a BTR project they want to offer.
+    On submit, the form is POSTed to Formspree (a hosted form service) which
+    forwards the submission as an email to msp-btr@maastrichtuniversity.nl.
+
+    The Formspree endpoint is in the <form action="..."> attribute below.
+    To change the destination email, change it in the Formspree dashboard.
+
+  WHAT THE BTR OFFICE DOES NEXT:
+    When a submission email arrives, the BTR office adds the project to
+    the catalog by editing projects-data.js. See instructions.html for
+    the exact steps.
+
+  PAGE STRUCTURE:
+    1. <header> — top bar with logos and nav
+    2. <section class="hero"> — page title
+    3. <main> — splits into:
+         <form id="btr-form"> — the actual form (left column)
+         <aside>              — clickable info cards (right column)
+    4. <div class="info-modal"> — popup that opens when an info card is clicked
+    5. <script> — form validation, info card popups, word counter
+
+  Only edit this file if you want to change form fields or styling.
+  ============================================================================
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -144,6 +175,7 @@
       <a href="index.html">Home</a>
       <a href="submit.html">For Supervisors</a>
       <a href="projects.html">For Students</a>
+      <a href="instructions.html">Instructions</a>
       <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
     </nav>
   </div>
@@ -186,6 +218,11 @@
       </div>
     </section>
 
+    <!--
+      The form sends submissions to Formspree, which forwards them as email.
+      To change destination email, log into the Formspree account that owns
+      this endpoint (mreoryay) and update the recipient there.
+    -->
     <form id="btr-form" action="https://formspree.io/f/mreoryay" method="POST" novalidate>
 
       <div class="success" id="success">Thank you — your project has been submitted. The BTR office will be in touch if anything is unclear.</div>
@@ -301,6 +338,12 @@
     </form>
   </div>
 
+  <!--
+    Sidebar info cards. Each button opens a popup (modal) containing extra
+    information for the supervisor. The actual content is in the INFO object
+    in the <script> at the bottom of the page — that's where you edit the
+    text shown inside each popup.
+  -->
   <aside>
     <button class="info-card" type="button" data-info="good">
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 7.6l-3.8 3.7.9 5.24L12 14l-5.1 2.54.9-5.24L4 7.6l5.61-.76L12 2z"/></svg></span>

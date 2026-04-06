@@ -1,7 +1,45 @@
-// BTR project catalog. Add new projects manually as supervisor submissions arrive by email.
-// disciplines: Bioinformatics, Biomedical Sciences, Biotechnology, Chemistry, Ecology & Fieldwork,
-//              Materials Science, Neuroscience, Physics, Sustainability, Other
-// types: Experimental, Theoretical, Computational, Literature Review
+/* ============================================================================
+   BTR PROJECT CATALOG
+   ============================================================================
+   This file holds every project shown on projects.html.
+   To add a new project, copy one of the existing entries below, paste it
+   just before the closing  ];  and edit the fields.
+
+   FULL INSTRUCTIONS: open instructions.html in the browser.
+
+   ----------------------------------------------------------------------------
+   FIELDS (each project is a JavaScript object inside { ... }):
+
+     title         (required) — short project title
+     supervisor    (required) — supervisor full name(s)
+     institution   (required) — department / institute / company
+     location      (required) — city or campus
+     email         (required) — student contact email
+     disciplines   (required) — array, e.g. ["Chemistry","Biotechnology"]
+     types         (required) — array, e.g. ["Experimental","Computational"]
+     description   (required) — 1–2 sentence summary shown on the card
+     dateAdded     (required) — "YYYY-MM" string, used to show project age
+     background    (optional) — longer paragraph with scientific context
+     details       (optional) — array of bullet points
+     methods       (optional) — methods / techniques / software
+     recommended   (optional) — recommended courses / background
+     note          (optional) — extra note (e.g. "interview required")
+
+   ----------------------------------------------------------------------------
+   ALLOWED DISCIPLINES (use these exact strings):
+     Bioinformatics, Biomedical Sciences, Biotechnology, Chemistry,
+     Ecology & Fieldwork, Materials Science, Neuroscience, Physics,
+     Sustainability, Other
+
+   ALLOWED TYPES:
+     Experimental, Theoretical, Computational, Literature Review
+
+   ----------------------------------------------------------------------------
+   COMMON MISTAKES:
+     - Forgetting the comma after  }  between projects
+     - Forgetting to wrap text in "double quotes"
+     - Using a discipline that isn't in the list above (the filter won't match)
+   ============================================================================ */
 
 window.BTR_PROJECTS = [
   {

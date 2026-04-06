@@ -1,3 +1,26 @@
+<!--
+  ============================================================================
+  projects.html — STUDENT-FACING PROJECT CATALOG
+  ============================================================================
+  This page shows every BTR project students can browse. The actual project
+  data lives in `projects-data.js` — to add or edit a project you only edit
+  that file, NOT this one. See `instructions.html` for the full guide.
+
+  HOW THIS PAGE IS PUT TOGETHER:
+    1. <header> at the top — logos and navigation
+    2. <section class="hero"> — page title
+    3. <div class="disclaimer"> — yellow warning that the catalog is not
+       exhaustive and students should still email faculty directly
+    4. <main> — splits into:
+         <aside class="filters"> — sidebar with search + checkboxes
+         <div id="grid">         — grid of project cards
+    5. <div class="modal"> — popup window that opens when you click a card
+    6. <script src="projects-data.js"> — loads the project list
+    7. <script> at the bottom — builds filters, renders cards, handles modal
+
+  Only edit this file if you want to change the layout / styling.
+  ============================================================================
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -116,6 +139,7 @@
 </head>
 <body>
 
+<!-- TOP BAR: logos on the left link back to landing page; nav on the right -->
 <header class="topbar">
   <div class="topbar-inner">
     <a href="index.html" class="logos" aria-label="Home">
@@ -127,6 +151,7 @@
       <a href="index.html">Home</a>
       <a href="submit.html">For Supervisors</a>
       <a href="projects.html" class="active">For Students</a>
+      <a href="instructions.html">Instructions</a>
       <a href="mailto:msp-btr@maastrichtuniversity.nl">Contact</a>
     </nav>
   </div>
@@ -140,6 +165,7 @@
   </div>
 </section>
 
+<!-- DISCLAIMER: required by Panos — make clear the catalog is NOT exhaustive -->
 <div class="disclaimer">
   <div class="disclaimer-inner">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
@@ -147,6 +173,11 @@
   </div>
 </div>
 
+<!--
+  MAIN LAYOUT: 2 columns
+    - Left column (aside): filter sidebar
+    - Right column: results count + grid of project cards
+-->
 <main>
   <aside class="filters">
     <div class="filter-group">
@@ -196,8 +227,16 @@
   </div>
 </footer>
 
+<!--
+  Loads the project list from projects-data.js. To add a new project,
+  edit that file and follow the instructions in instructions.html.
+-->
 <script src="projects-data.js"></script>
 <script>
+  // ----- ALLOWED FILTER VALUES ---------------------------------------------
+  // These two arrays control which checkboxes appear in the sidebar.
+  // If you ever add a new discipline / type, also add it here AND update
+  // every relevant entry in projects-data.js. They must match exactly.
   const DISCIPLINES = ["Bioinformatics","Biomedical Sciences","Biotechnology","Chemistry","Ecology & Fieldwork","Materials Science","Neuroscience","Physics","Sustainability","Other"];
   const TYPES = ["Experimental","Theoretical","Computational","Literature Review"];
   const projects = window.BTR_PROJECTS || [];
