@@ -411,10 +411,16 @@
 
     const checkedTypes = form.querySelectorAll('input[name="project_type"]:checked').length;
     const checkedDisc = form.querySelectorAll('input[name="discipline"]:checked').length;
-    if (!form.checkValidity() || checkedTypes === 0 || checkedDisc === 0) {
-      err.textContent = checkedDisc === 0 ? 'Please select at least one scientific discipline.'
-                      : checkedTypes === 0 ? 'Please select at least one project type.'
-                      : 'Please complete the required fields.';
+    const invalid = form.querySelector('input:invalid, select:invalid, textarea:invalid');
+    if (invalid || checkedTypes === 0 || checkedDisc === 0) {
+      if (checkedDisc === 0) err.textContent = 'Please select at least one scientific discipline.';
+      else if (checkedTypes === 0) err.textContent = 'Please select at least one project type.';
+      else {
+        const label = form.querySelector('label[for="' + invalid.id + '"]');
+        const name = label ? label.textContent.replace('*','').trim() : invalid.name || 'a field';
+        err.textContent = 'Please complete: ' + name;
+        invalid.focus();
+      }
       err.style.display = 'block';
       window.scrollTo({top: form.offsetTop - 40, behavior:'smooth'});
       return;
