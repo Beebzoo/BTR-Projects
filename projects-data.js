@@ -7,185 +7,513 @@
 
    FULL INSTRUCTIONS: see README.md in the repo root.
 
-   ----------------------------------------------------------------------------
-   FIELDS (each project is a JavaScript object inside { ... }):
+   FIELDS: title, supervisor, institution, location, email, disciplines[],
+           types[], description, dateAdded (required) +
+           background, details[], methods, recommended, note (optional)
 
-     title         (required) — short project title
-     supervisor    (required) — supervisor full name(s)
-     institution   (required) — department / institute / company
-     location      (required) — city or campus
-     email         (required) — student contact email
-     disciplines   (required) — array, e.g. ["Chemistry","Biotechnology"]
-     types         (required) — array, e.g. ["Experimental","Computational"]
-     description   (required) — 1–2 sentence summary shown on the card
-     dateAdded     (required) — "YYYY-MM" string, used to show project age
-     background    (optional) — longer paragraph with scientific context
-     details       (optional) — array of bullet points
-     methods       (optional) — methods / techniques / software
-     recommended   (optional) — recommended courses / background
-     note          (optional) — extra note (e.g. "interview required")
-
-   ----------------------------------------------------------------------------
-   ALLOWED DISCIPLINES (use these exact strings):
-     Bioinformatics, Biomedical Sciences, Biotechnology, Chemistry,
-     Ecology & Fieldwork, Materials Science, Neuroscience, Physics,
-     Sustainability, Other
-
-   ALLOWED TYPES:
-     Experimental, Theoretical, Computational, Literature Review
-
-   ----------------------------------------------------------------------------
-   COMMON MISTAKES:
-     - Forgetting the comma after  }  between projects
-     - Forgetting to wrap text in "double quotes"
-     - Using a discipline that isn't in the list above (the filter won't match)
+   ALLOWED DISCIPLINES: Bioinformatics, Biomedical Sciences, Biotechnology,
+     Chemistry, Ecology & Fieldwork, Materials Science, Neuroscience,
+     Physics, Sustainability, Other
+   ALLOWED TYPES: Experimental, Theoretical, Computational, Literature Review
    ============================================================================ */
 
 window.BTR_PROJECTS = [
   {
-    title: "Gravitational Wave Research",
-    supervisor: "Dr. Sebastian Steinlechner & GWFP Team",
-    institution: "Department of Gravitational Waves and Fundamental Physics",
-    location: "Maastricht (DUB30)",
-    email: "secretariat-gwfp@maastrichtuniversity.nl",
-    disciplines: ["Physics"],
-    types: ["Experimental","Theoretical"],
-    description: "Work on technologies for next-generation gravitational-wave detectors like the Einstein Telescope. Multiple project areas available.",
-    background: "Maastricht University is one of the leading places for gravitational-wave research, hosting the ETpathfinder prototype facility.",
-    details: ["Gravitational-wave theory: modeling and analyzing sources","Laser interferometry for better detectors","Quantum optics and metrology","Optical coatings for laser mirrors","Electronics and data acquisition"],
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Theoretical Particle Physics",
-    supervisor: "Dr. Keri Vos",
-    institution: "Gravitational Waves and Fundamental Physics (GWFP)",
-    location: "Maastricht (DUB30, Room 1.050)",
-    email: "k.vos@maastrichtuniversity.nl",
-    disciplines: ["Physics"],
-    types: ["Theoretical","Computational"],
-    description: "Test the Standard Model of particle physics through theoretical and data-analysis projects.",
-    background: "Investigates open questions like matter-antimatter asymmetry in the universe.",
-    details: ["The Matter-Antimatter asymmetry","The flavor structure of Dark Matter","Solving the B→πK puzzle with New Physics","Charm physics: phenomenological/applied"],
-    recommended: "Particle Physics, Quantum Mechanics, and Theory of Relativity courses",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Bio-based Biodegradable Fibers (Glaukos)",
-    supervisor: "Dr. Cristina Palacios-Mateo",
-    institution: "AMIBM",
-    location: "Brightlands Chemelot Campus",
-    email: "c.palaciosmateo@maastrichtuniversity.nl",
-    disciplines: ["Materials Science","Sustainability"],
-    types: ["Experimental"],
-    description: "Develop bio-based, biodegradable textile fibers as an alternative to PET, in a Horizon 2020 EU project.",
-    background: "Two thirds of all fibers produced globally are synthetic. Glaukos develops bio-based, biodegradable fibers for clothing and fishing gear.",
-    details: ["Characterize granulates (DSC, GPC, Rheology)","Spin fibers through FET semi-industrial line","Characterize fibers (tensile strength, microscopy, crystallinity)"],
-    methods: "DSC, GPC, rheology, fiber spinning, microscopy",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Engineered Cutinase for PET De-polymerization",
-    supervisor: "Dr. Cristina Palacios-Mateo",
-    institution: "AMIBM",
-    location: "Brightlands Chemelot Campus",
-    email: "c.palaciosmateo@maastrichtuniversity.nl",
-    disciplines: ["Biotechnology","Chemistry"],
-    types: ["Experimental"],
-    description: "Optimize production of an engineered enzyme (LCC variant) capable of degrading PET plastic in 10 hours.",
-    background: "Recent research has identified highly effective PETases. This project optimizes production and preservation of the LCC variant.",
-    details: ["Transform E.coli with plasmid","Express LCC variant","Purify through IMAC","SDS-Page and sequencing","pNPB activity assay"],
-    methods: "Protein expression, IMAC purification, SDS-PAGE, enzyme assays",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Silica Aerogel from Waste Materials",
-    supervisor: "Marina Borzova (PhD), Dr. Katrin Schollbach",
+    title: "X-ray Diffraction for Sustainable Materials Characterization",
+    supervisor: "Dr. Marina Borzova",
     institution: "Eindhoven University of Technology",
     location: "Eindhoven",
     email: "m.borzova@tue.nl",
-    disciplines: ["Materials Science","Sustainability"],
-    types: ["Experimental"],
-    description: "Develop sustainable silica aerogel from waste materials like mineral wool and glass for circular insulation.",
-    background: "3.7M poorly insulated Dutch homes need renovation. Silica aerogel is highly effective but expensive.",
-    methods: "XRD, XRF, BET, DSC, thermal conductivity, ambient pressure drying",
-    dateAdded: "2024-01"
+    disciplines: ["Materials Science","Sustainability","Chemistry"],
+    types: ["Experimental","Computational"],
+    description: "Improve XRD analysis methods for Electric Arc Furnace (EAF) slags as supplementary cementitious materials in the steel industry's sustainability transition.",
+    background: "The steel industry accounts for 4–5% of global CO2 and produces >400 Mt of slag annually. EAF slags are heterogeneous and challenging to characterize via XRD due to amorphous phases.",
+    details: ["Optimize XRD measurement conditions and instrumental settings","Use internal/external standards","Validate with SEM-EDX and XRF","Explore open-source data analysis approaches","Assess EAF slags as cementitious materials"],
+    methods: "XRD, SEM-EDX, XRF, open-source data analysis",
+    note: "Part of large collaboration with steel producers and PhD students. No prior hands-on experience required — full training provided. Joint publication potential.",
+    dateAdded: "2026-01"
   },
   {
-    title: "3D Printing: Polyamide Crystallization Control",
-    supervisor: "Dr. Jules Harings",
-    institution: "AMIBM — Macromolecular Physics & Technology",
-    location: "Brightlands Chemelot Campus",
-    email: "jules.harings@maastrichtuniversity.nl",
-    disciplines: ["Materials Science","Chemistry"],
+    title: "Modeling Hemodialysis & the Bioartificial Kidney",
+    supervisor: "Dr. Aurélie Carlier",
+    institution: "MERLN Institute, Maastricht University",
+    location: "Maastricht",
+    email: "a.carlier@maastrichtuniversity.nl",
+    disciplines: ["Biomedical Sciences","Bioinformatics"],
+    types: ["Computational"],
+    description: "Advance computational models of hemodialysis to design new treatments such as the bioartificial kidney and reduce water usage during dialysis.",
+    background: "Collaboration with UMC Utrecht. Uses ODE/PDE/agent-based modelling to optimize kidney treatment devices.",
+    methods: "ODEs, PDEs, agent-based models (VCell, Python, Matlab)",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Kidney Physiology: Proximal Tubule & PBPK Modeling",
+    supervisor: "Dr. Aurélie Carlier",
+    institution: "MERLN Institute, Maastricht University",
+    location: "Maastricht",
+    email: "a.carlier@maastrichtuniversity.nl",
+    disciplines: ["Biomedical Sciences","Bioinformatics"],
+    types: ["Computational"],
+    description: "Develop in silico models of nephrons capturing toxin transport, drug interactions and metabolism in healthy, CKD and AKI states.",
+    details: ["Proximal tubule mitochondria metabolism map","PBPK model (healthy, CKD, AKI)","PBPK model (sex differences)","Linking proximal tubule metabolism and transport","Map of PT transport in physiology and CKD"],
+    methods: "ODEs, PDEs (VCell, Python, Matlab)",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Disease Map of Fibrosis",
+    supervisor: "Dr. Aurélie Carlier",
+    institution: "MERLN Institute, Maastricht University",
+    location: "Maastricht",
+    email: "a.carlier@maastrichtuniversity.nl",
+    disciplines: ["Biomedical Sciences","Bioinformatics"],
+    types: ["Computational"],
+    description: "Create an extensive visual representation of signaling pathways involved in fibrosis and dynamically model a subset of them.",
+    methods: "Pathway mapping, dynamic ODE modelling",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Lung Model for Inhalation Risk Assessment",
+    supervisor: "Dr. Aurélie Carlier",
+    institution: "MERLN Institute, Maastricht University",
+    location: "Maastricht",
+    email: "a.carlier@maastrichtuniversity.nl",
+    disciplines: ["Biomedical Sciences","Bioinformatics"],
+    types: ["Computational"],
+    description: "Develop a model assessing the effect of inhaled substances on lung disease, supporting public health risk assessment.",
+    note: "Collaboration with RIVM (National Institute for Public Health and the Environment).",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Bone Regeneration with Co-morbidities",
+    supervisor: "Dr. Aurélie Carlier",
+    institution: "MERLN Institute, Maastricht University",
+    location: "Maastricht",
+    email: "a.carlier@maastrichtuniversity.nl",
+    disciplines: ["Biomedical Sciences","Bioinformatics"],
+    types: ["Computational"],
+    description: "Model how bone regeneration is affected by co-morbidities to improve treatment strategies for patients with multiple conditions.",
+    methods: "ODE/agent-based modelling",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Host-Microbiome Interactions in Aging Female Mice",
+    supervisor: "Lena Best & Prof. Christoph Kaleta",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "L.Best@iem.uni-kiel.de",
+    disciplines: ["Bioinformatics","Biomedical Sciences"],
+    types: ["Computational"],
+    description: "Reconstruct gut bacterial genomes from female mice at 3, 15 and 24 months and integrate with host gene expression to study sex-specific aging.",
+    background: "Follow-up to Best et al. Nature Microbiology 2025 which identified age-dependent host–microbiome interactions in male mice.",
+    details: ["Assemble & annotate metagenomic data","Analyse host RNA-seq from colon and brain","Integrative analysis: metabolic modelling, partial correlation, random forests, WGCNA"],
+    methods: "Metagenomics assembly, RNA-seq, metabolic modelling, R/Python",
+    note: "Purely computational (dry lab). BSc focuses on Objective 1 OR 2.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Eukaryotic Metabolic Modeling via Stochastic Petri Nets",
+    supervisor: "Dr. Jan Taubenheim",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "j.taubenheim@iem.uni-kiel.de",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational","Theoretical"],
+    description: "Develop an alternative to Flux Balance Analysis for multicellular metabolism using product-inhibition Petri Net models.",
+    background: "FBA assumes cellular metabolism is optimised for growth — challenging for multicellular organisms. Petri Nets with product-inhibition feedback offer a new approach.",
+    methods: "C++, Python, Petri Net simulation",
+    recommended: "Good understanding of C++ and Python; biochemical kinetics",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Machine Learning for Medium Predictions in Metabolic Modeling",
+    supervisor: "Dr. Jan Taubenheim",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "j.taubenheim@iem.uni-kiel.de",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Use ML to predict bacterial growth media from genome-derived draft metabolic models, improving culture-free model construction.",
+    methods: "R, machine learning, gapseq, SLURM/HPC",
+    recommended: "Programming in R; familiarity with ML",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Steroid Hormones & the Gut Microbiome",
+    supervisor: "Lena Best & Prof. Christoph Kaleta",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "L.Best@iem.uni-kiel.de",
+    disciplines: ["Biomedical Sciences","Bioinformatics"],
+    types: ["Computational"],
+    description: "Investigate whether menopause-related hormonal changes (and HRT) impact gut microbiome composition using a northern German cohort.",
+    methods: "Statistical methods, data visualization, metabolic modelling",
+    note: "Purely computational. BSc focuses on objective 1 or 2.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Metabolite Exchange Networks of the Aging Gut Microbiome",
+    supervisor: "Lena Best & Prof. Christoph Kaleta",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "L.Best@iem.uni-kiel.de",
+    disciplines: ["Bioinformatics","Biomedical Sciences"],
+    types: ["Computational"],
+    description: "Use drop-out community simulations to characterise how 'egoistic' bacteria affect microbial metabolite exchange and stability with age.",
+    details: ["Integrate age with metabolite exchange data","Network topology analysis","MSc extension: simulate alternative diets"],
+    methods: "Network analysis, simulation, R",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Bacterial Niche Formation in Nematostella vectensis Microbiome",
+    supervisor: "Dr. Jan Taubenheim & Dr. Johannes Zimmermann",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "j.taubenheim@iem.uni-kiel.de",
+    disciplines: ["Bioinformatics","Ecology & Fieldwork"],
+    types: ["Computational"],
+    description: "Test whether early microbial colonisers of the sea anemone Nematostella create niches for later bacteria via metabolic interactions.",
+    details: ["Reconstruct ~60 metabolic models with gapseq","Simulate pairwise interactions with bacarena","Predict growth and exchanged metabolites"],
+    methods: "gapseq, bacarena, agent-based modelling, R",
+    note: "Master thesis level. Wet-lab partner confirms predictions.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Curvibacter in Hydra Microbiome Assembly",
+    supervisor: "Dr. Jan Taubenheim",
+    institution: "Christian-Albrechts-University Kiel — Institute of Experimental Medicine",
+    location: "Kiel, Germany",
+    email: "j.taubenheim@iem.uni-kiel.de",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Use RNA-seq across conditions to study how Curvibacter — the dominant bacterium of the freshwater polyp Hydra — adapts its metabolism.",
+    details: ["Differential expression & GSEA","Context-specific metabolic models","Model microbiome–microbiome metabolic interactions"],
+    methods: "RNA-seq analysis, metabolic modelling, R/Python",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Interactive Biological Pathways for Rare Diseases",
+    supervisor: "Dr. Friederike Ehrhart",
+    institution: "Maastricht University — Department of Translational Genomics",
+    location: "Maastricht (Universiteitssingel 60, M1.06)",
+    email: "friederike.ehrhart@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics","Biomedical Sciences"],
+    types: ["Computational"],
+    description: "Curate, model and publish molecular pathway diagrams of rare diseases on WikiPathways and analyse omics data with them.",
+    background: "Rare diseases (<1:2,000) often lack published pathway models. Pathway diagrams support computational analysis of large datasets.",
+    details: ["Identify disease genes from literature","Draw pathways in PathVisio","Publish on WikiPathways","Visualise expression data on pathways","Explore networks in Cytoscape"],
+    methods: "Pathway modelling, network analysis, omics data analysis",
+    note: "Must be able to install and run PathVisio on your own laptop (>100 MB free).",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Herbarium of the Jochymhof — Limburg Flora",
+    supervisor: "Dr. Roy Erkens",
+    institution: "Maastricht University — System Earth Science",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "roy.erkens@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork"],
+    types: ["Experimental","Literature Review"],
+    description: "Investigate ~1,000 herbarium specimens of the Jochymhof botanical garden in Steyl and write a small data paper.",
+    note: "Aim: publication of a data paper.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Redlisting of Trees and Lianas in Annonaceae",
+    supervisor: "Dr. Roy Erkens",
+    institution: "Maastricht University — System Earth Science",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "roy.erkens@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork"],
+    types: ["Literature Review","Computational"],
+    description: "Make IUCN Red List threat assessments for species in the pantropical plant family Annonaceae.",
+    note: "Assessments published as part of yearly IUCN Red List updates. Supervisor is in the Global Tree Assessment group.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Biogeographical Patterns in Annonaceae using GIS",
+    supervisor: "Dr. Roy Erkens",
+    institution: "Maastricht University — System Earth Science",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "roy.erkens@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Bioinformatics"],
+    types: ["Computational"],
+    description: "Use GIS to investigate what determines the distribution of species in the plant family Annonaceae.",
+    note: "Collaboration with University of Montpellier, France.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Morphological Traits of Guatteria Species",
+    supervisor: "Dr. Roy Erkens",
+    institution: "Maastricht University — System Earth Science",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "roy.erkens@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork"],
     types: ["Experimental"],
-    description: "Develop bio-inspired polyamide formulations for 3D printing (FDM/SLS) with improved interfacial bonding.",
-    background: "3D printed thermoplastics have inferior mechanical properties due to insufficient mixing at weld interfaces. Uses water/ions to control crystallization, inspired by biology.",
-    methods: "Polarized Optical Microscopy, DSC, FTIR, rheology, dynamic mechanical testing",
-    dateAdded: "2024-01"
+    description: "Investigate the poorly understood Neotropical genus Guatteria using SEM pollen work or leaf morphometric analyses.",
+    methods: "SEM, morphometrics",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Chemical Constituents and Crystals of Tropical Plants",
+    supervisor: "Dr. Roy Erkens (with Giuditta Perversi)",
+    institution: "Maastricht University — System Earth Science",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "roy.erkens@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Chemistry"],
+    types: ["Experimental","Literature Review"],
+    description: "Study the secondary compounds and crystals found in leaves of tropical plant species.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Network Analysis of Interictal Abnormalities in Stereo-EEG",
+    supervisor: "Dr.ir. E.D. Gommer",
+    institution: "MUMC+ — Department of Clinical Neurophysiology",
+    location: "Maastricht",
+    email: "e.gommer@mumc.nl",
+    disciplines: ["Neuroscience","Bioinformatics","Biomedical Sciences"],
+    types: ["Computational"],
+    description: "Implement and evaluate network-based methods to localise the epileptogenic zone using interictal SEEG recordings of drug-resistant epilepsy patients.",
+    background: "SEEG provides high-resolution depth recordings. Recent studies suggest epileptogenic regions are embedded in pathological networks with distinctive connectivity.",
+    details: ["Identify candidate pathological nodes (spike rates, time-frequency)","Connectivity & network analyses","Characterise interaction with rest of brain"],
+    dateAdded: "2026-01"
+  },
+  {
+    title: "Cellular Plant Development Modelling with VirtualLeaf",
+    supervisor: "Dr. Ruth Großeholz",
+    institution: "Maastricht University",
+    location: "Maastricht",
+    email: "ruth.grosseholz@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Use the VirtualLeaf framework to simulate plant tissue growth and developmental processes (e.g. root growth) at cellular level.",
+    methods: "VirtualLeaf, computational modelling",
+    recommended: "Basic programming. No prior modelling experience required.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Environmental Responses in Plant Models",
+    supervisor: "Dr. Ruth Großeholz",
+    institution: "Maastricht University",
+    location: "Maastricht",
+    email: "ruth.grosseholz@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Expand existing plant modelling frameworks to incorporate environmental factors such as temperature and light quality.",
+    recommended: "Existing programming skills required.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Multi-Scale Plant Signaling and Response Models",
+    supervisor: "Dr. Ruth Großeholz",
+    institution: "Maastricht University",
+    location: "Maastricht",
+    email: "ruth.grosseholz@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Build models linking molecular signalling and cellular responses, from ODE-based signalling to particle-based protein movement.",
+    methods: "ODE modelling, particle-based simulation",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Ancient Technology and Innovation",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Other"],
+    types: ["Literature Review","Experimental"],
+    description: "Explore the technological, environmental and cultural factors influencing ancient inventions in the eastern Mediterranean.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Mapping Ancient Landscapes",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Other"],
+    types: ["Computational"],
+    description: "Map natural resources, transportation routes, biological and geological data to study past human settlement patterns.",
+    methods: "ArcGIS, statistics, photogrammetry",
+    recommended: "ArcGIS, database design or statistics experience encouraged.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Human Behavioral Ecology of Past Settlement",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Other"],
+    types: ["Computational","Theoretical"],
+    description: "Apply ecological models to past human settlement data to understand how landscapes were inhabited and used.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Experimental Archaeology",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Other"],
+    types: ["Experimental"],
+    description: "Recreate ancient technologies and structures (e.g. Bronze Age building) to test hypotheses about how things were made and used.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Ancient Beer: Reconstructing Brewing Recipes",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Chemistry","Other"],
+    types: ["Experimental","Literature Review"],
+    description: "Reconstruct ancient brewing methods using archaeological, scientific and literary evidence, and document modern recreations.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Prehistoric Water Management Systems",
+    supervisor: "Dr. Kyle Jazwa",
+    institution: "Maastricht Science Programme",
+    location: "Maastricht (PHS1 B2.015)",
+    email: "k.jazwa@maastrichtuniversity.nl",
+    disciplines: ["Ecology & Fieldwork","Sustainability","Other"],
+    types: ["Computational","Literature Review"],
+    description: "Examine how prehistoric people manipulated landscapes and built structures to manage rivers and water supplies.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Tomato Knowledge Graph from Literature Curation",
+    supervisor: "Dr. Kumar Saurabh Singh",
+    institution: "Brightlands Future Farming Institute",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "kumarsaurabh.singh@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational","Literature Review"],
+    description: "Build a curated knowledge graph linking tomato genes, traits, metabolites, pathways, QTLs and disease-resistance using Text2Trait and HARVEST.",
+    background: "Tomato literature is vast but scattered. The KG enables novel cross-paper discoveries.",
+    details: ["Curate gene→trait, gene→metabolite, QTL→gene relationships","Identify hub genes and consistent associations","Build use-case graphs (pathogens, insects, beneficial microbes)"],
+    methods: "Text2Trait (text2trait.com), HARVEST, knowledge graphs",
+    note: "Data will be published.",
+    dateAdded: "2025-12"
+  },
+  {
+    title: "Normalization Effects on Transcriptomics-Metabolomics Integration",
+    supervisor: "Dr. Kumar Saurabh Singh",
+    institution: "Brightlands Future Farming Institute",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "kumarsaurabh.singh@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Investigate how different normalization strategies (log, Z-score, quantile, CPM/RPKM) affect gene-metabolite correlations in paired multi-omics data.",
+    methods: "Multi-omics analysis, statistics, R/Python",
+    dateAdded: "2025-12"
+  },
+  {
+    title: "Genomic Boundaries of Plant Biosynthetic Gene Clusters",
+    supervisor: "Dr. Kumar Saurabh Singh",
+    institution: "Brightlands Future Farming Institute",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "kumarsaurabh.singh@maastrichtuniversity.nl",
+    disciplines: ["Bioinformatics"],
+    types: ["Computational"],
+    description: "Use linkage disequilibrium patterns to investigate the boundaries of biosynthetic gene clusters (BGCs) producing plant natural products.",
+    methods: "Population genomics, linkage disequilibrium, BGC analysis",
+    dateAdded: "2025-12"
+  },
+  {
+    title: "Cucumber Transformation Method Development",
+    supervisor: "Dr. Xinping Yang",
+    institution: "Plant Functional Genomics — Brightlands Greenport Venlo",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "xinping.yang@maastrichtuniversity.nl",
+    disciplines: ["Biotechnology"],
+    types: ["Experimental"],
+    description: "Develop a robust transformation pipeline for two contrasting cucumber varieties, optimising explant, hormone, medium and Agrobacterium conditions.",
+    details: ["Plant tissue culture and explant preparation","Medium recipe & phytohormone formulation","Agrobacterium-mediated transformation","Selection of transformed tissues"],
+    methods: "Tissue culture, Agrobacterium transformation",
+    note: "Minimum 3 days/week presence in Venlo lab.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Hormone Reporter Lines for Tomato Regeneration",
+    supervisor: "Dr. Xinping Yang",
+    institution: "Plant Functional Genomics — Brightlands Greenport Venlo",
+    location: "Brightlands Campus Greenport Venlo",
+    email: "xinping.yang@maastrichtuniversity.nl",
+    disciplines: ["Biotechnology"],
+    types: ["Experimental"],
+    description: "Generate fluorescent reporter lines visualising auxin/cytokinin signalling during callus induction, shoot initiation and organogenesis in tomato.",
+    methods: "Tissue culture, Agrobacterium transformation, fluorescence microscopy",
+    note: "Minimum 3 days/week presence in Venlo lab.",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "Cytochrome bo3 Oxidase: Substrate/Product Exchange",
+    supervisor: "Dr. Ye Gao",
+    institution: "M4I Institute — Biochemistry Group",
+    location: "Maastricht",
+    email: "y.gao@maastrichtuniversity.nl",
+    disciplines: ["Biomedical Sciences","Biotechnology","Chemistry"],
+    types: ["Experimental"],
+    description: "Catch intermediate conformations of E. coli cytochrome bo3 quinol oxidase to understand how the enzyme switches between 'open' and 'closed' states.",
+    background: "Recent cryo-EM in peptidiscs revealed an 'open' conformation, raising questions about the ~5 ms switching dynamics.",
+    details: ["Bioinformatics & molecular modelling","Cloning & recombinant expression in E. coli (ML-I)","Membrane protein purification (IMAC, IEX, GF)","Mass spectrometry & cryo-EM"],
+    methods: "Cloning, recombinant expression, IMAC/IEX/Gel Filtration, MS, cryo-EM, SAXS",
+    note: "Available September 2026 onwards (Spring 2026 full).",
+    dateAdded: "2025-11"
+  },
+  {
+    title: "LCA of Post-Consumer Beverage Carton Recycling",
+    supervisor: "Dr. Ali Ghannadzadeh",
+    institution: "AMIBM — Aachen-Maastricht Institute for Biobased Materials",
+    location: "Brightlands Chemelot Campus",
+    email: "ali.ghannadzadeh@maastrichtuniversity.nl",
+    disciplines: ["Sustainability","Materials Science"],
+    types: ["Computational","Literature Review"],
+    description: "Develop a robust EU-wide methodology for calculating recycling rates of fibre-based composite packaging, in collaboration with EXTR:ACT and HEDRA.",
+    details: ["Inventory of EU recycling-rate methodologies","Develop dry-weight calculation method","Apply to Germany, Belgium, Spain","Investigate post-separation from residual waste"],
+    methods: "Material flow analysis, LCA, Excel simulation tool",
+    note: "Industry partnership with EXTR:ACT (EU) and HEDRA (NL). Includes webinar deliverable.",
+    dateAdded: "2025-12"
+  },
+  {
+    title: "Dynamic LCA of Microbial Fermentation Bioproducts",
+    supervisor: "Dr. Ali Ghannadzadeh",
+    institution: "AMIBM — Aachen-Maastricht Institute for Biobased Materials",
+    location: "Brightlands Chemelot Campus",
+    email: "ali.ghannadzadeh@maastrichtuniversity.nl",
+    disciplines: ["Sustainability","Biotechnology"],
+    types: ["Computational","Literature Review"],
+    description: "Apply the BBM-LCA framework to fermentation projects (PHA bioplastics, single cell protein, biosurfactants) at the University of Manitoba.",
+    details: ["PHA biopolymers from C1 carbon (methanol, formic acid, CO2)","Single cell protein from C1","Biosurfactants from lignocellulosic residues","Pulse starch bioconversion","Ethanol/2,3-butanediol from CO2"],
+    methods: "Dynamic LCA, BBM-LCA, ISO 14040",
+    note: "External collaboration with Dr. Warren Blunt, University of Manitoba, Canada.",
+    dateAdded: "2025-12"
+  },
+  {
+    title: "Multi-Disciplinary Sustainability Assessment of Biobased Products",
+    supervisor: "Dr. Ali Ghannadzadeh",
+    institution: "AMIBM — Aachen-Maastricht Institute for Biobased Materials",
+    location: "Brightlands Chemelot Campus",
+    email: "ali.ghannadzadeh@maastrichtuniversity.nl",
+    disciplines: ["Sustainability"],
+    types: ["Computational","Theoretical","Literature Review"],
+    description: "Combine Dynamic LCA, Net Ecosystem Exchange, microplastics, circularity, regulations and exergy analysis into a single sustainability framework.",
+    methods: "Dynamic LCA, NEE, BBM-LCA, exergy",
+    dateAdded: "2025-12"
   },
   {
     title: "Non-Crystallizing Deep Eutectic Solvents",
     supervisor: "Dr. Laura Kollau",
     institution: "Circular Chemical Engineering, UM",
     location: "Brightlands Chemelot Campus",
-    email: "laura.kollau@maastrichtuniversity.nl",
+    email: "l.kollau@maastrichtuniversity.nl",
     disciplines: ["Chemistry","Sustainability"],
     types: ["Experimental"],
-    description: "Investigate fundamental properties of non-crystallizing deep eutectic solvents (DESs) as sustainable solvents.",
-    details: ["Evaluate known non-crystallizing DESs","Predict and test new combinations","Analyze theoretical parameters","Determine driving factors for crystallization kinetics"],
+    description: "Investigate fundamental properties of non-crystallizing deep eutectic solvents (DESs) as sustainable alternatives.",
     methods: "DSC, 1D and 2D NMR, organic synthesis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "MEMS-based Microfluidic Droplet Analysis",
-    supervisor: "Lukas Bartsch (PhD), Dr. Laura Kollau",
-    institution: "Circular Chemical Engineering, UM",
-    location: "Brightlands Chemelot Campus",
-    email: "laura.kollau@maastrichtuniversity.nl",
-    disciplines: ["Chemistry"],
-    types: ["Experimental"],
-    description: "Develop methodology using thermophysical sensors (ρ, μ) to measure microdroplet volumes in microfluidic systems.",
-    background: "Current optical methods require expensive setups. MEMS-based multisensory systems offer an inline alternative.",
-    methods: "MEMS sensors, microfluidic reactor operation, data analysis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Beta-Turn Mimics via Stereoselective Ugi Reaction",
-    supervisor: "Dr. Jordy M. Saya",
-    institution: "AMIBM — Biobased Organic Chemistry",
-    location: "Brightlands Chemelot Campus",
-    email: "j.saya@maastrichtuniversity.nl",
-    disciplines: ["Chemistry"],
-    types: ["Experimental"],
-    description: "Synthesize β-turn mimics using Ugi multicomponent reaction for protein-protein interaction inhibitors.",
-    background: "β-turns are key protein structures. Traditional synthesis (SPPS) of D-Pro-L-Pro is difficult; Ugi enables single-step synthesis.",
-    methods: "Ugi MCR, organic synthesis, peptide chemistry, chromatography",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Glycerol → Dihydroxyacetone via Photocatalysis",
-    supervisor: "Dr. Jordy M. Saya",
-    institution: "AMIBM — Biobased Organic Chemistry",
-    location: "Brightlands Chemelot Campus",
-    email: "j.saya@maastrichtuniversity.nl",
-    disciplines: ["Chemistry","Sustainability"],
-    types: ["Experimental"],
-    description: "Convert biodiesel-waste glycerol into high-value dihydroxyacetone via cooperative photocatalysis.",
-    background: "Biodiesel produces 10 wt% glycerol byproduct. Nature-inspired triple photoredox/cobalt/boronic-acid catalysis enables selective oxidation.",
-    methods: "Photochemistry, catalysis, organic synthesis, spectroscopy",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Modified Asinger Reaction for Thiazoline Polymers",
-    supervisor: "Dr. Jordy M. Saya",
-    institution: "AMIBM — Biobased Organic Chemistry",
-    location: "Brightlands Chemelot Campus",
-    email: "j.saya@maastrichtuniversity.nl",
-    disciplines: ["Chemistry","Materials Science"],
-    types: ["Experimental"],
-    description: "Develop novel thiazoline-containing polymers using the underexplored Asinger MCR for opto/wearable electronics.",
-    methods: "Multicomponent reactions, polymer synthesis, material characterization",
-    dateAdded: "2024-01"
+    dateAdded: "2025-11"
   },
   {
     title: "Structure-Based Virtual Screening for Sepsis",
@@ -196,10 +524,9 @@ window.BTR_PROJECTS = [
     disciplines: ["Biomedical Sciences","Chemistry"],
     types: ["Computational","Experimental"],
     description: "Use structural bioinformatics and virtual screening to identify drug candidates for severe sepsis.",
-    details: ["Study 3D structures of sepsis proteins","Dock >1M small molecules in silico","Predict top 1000 binders","Test for cell viability","Optimize best compounds"],
     methods: "Structural bioinformatics, molecular docking, virtual screening",
     note: "Limited capacity — interview required.",
-    dateAdded: "2024-01"
+    dateAdded: "2025-11"
   },
   {
     title: "Cytotoxic Inflammatory Processes in Sepsis (Histones)",
@@ -210,9 +537,8 @@ window.BTR_PROJECTS = [
     disciplines: ["Biomedical Sciences","Chemistry"],
     types: ["Experimental"],
     description: "Study cytotoxicity of extracellular histones and develop prototype drugs to interfere with histone toxicity in sepsis.",
-    background: "Extracellular histones are major mediators of death in sepsis (mortality up to 80%).",
     methods: "Recombinant protein expression, proteomics, MS, cell culture",
-    dateAdded: "2024-01"
+    dateAdded: "2025-11"
   },
   {
     title: "Novel Diagnostic Methods for Sepsis at ICU",
@@ -223,276 +549,7 @@ window.BTR_PROJECTS = [
     disciplines: ["Biomedical Sciences"],
     types: ["Experimental"],
     description: "Develop sensitive and fast methods to assess clinical status of ICU sepsis patients using novel biomarkers.",
-    methods: "Protein isolation, bioassays, statistical analysis, clinical diagnostics",
-    dateAdded: "2024-01"
+    methods: "Protein isolation, bioassays, statistical analysis",
+    dateAdded: "2025-11"
   },
-  {
-    title: "Chemical Ecology and Ecophysiology of Ladybirds",
-    supervisor: "Dr. John Sloggett",
-    institution: "Department of Biology",
-    location: "Maastricht (PHS 2.006)",
-    email: "j.sloggett@maastrichtuniversity.nl",
-    disciplines: ["Ecology & Fieldwork"],
-    types: ["Experimental"],
-    description: "Study chemical defenses, ecophysiology, and anthropogenic effects on ladybird beetles.",
-    details: ["Chemical Ecology: alkaloid toxicity, chemical defenses","Ecophysiology: climate change effects, mating behavior","Anthropogenic effects: invasives, urbanization"],
-    methods: "Behavioral studies, analytical chemistry, mathematical modeling",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Evolutionary Plant Biology and Biodiversity",
-    supervisor: "Dr. Roy Erkens",
-    institution: "Department of Biology",
-    location: "Maastricht (PHS B2.019)",
-    email: "roy.erkens@maastrichtuniversity.nl",
-    disciplines: ["Ecology & Fieldwork"],
-    types: ["Experimental"],
-    description: "Investigate plant diversity origins and biodiversity patterns in Limburg and the Neotropics.",
-    details: ["Biodiversity of the Grensmaas region","Herbarium of Natural History Museum Maastricht","Urban evolution using Dandelion","Redlisting Annonaceae trees","Biogeography using GIS"],
-    methods: "GIS, morphometrics, SEM, phytochemistry",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Ancient Engineering & Human-Environment Interaction",
-    supervisor: "Dr. Kyle Jazwa",
-    institution: "Department of Archaeology",
-    location: "Maastricht (PHS B2.018)",
-    email: "k.jazwa@maastrichtuniversity.nl",
-    disciplines: ["Ecology & Fieldwork","Other"],
-    types: ["Computational","Experimental"],
-    description: "Study ancient technology, construction, and settlement in the eastern Mediterranean.",
-    details: ["Architectural Design Networks","Human Behavioral Ecology","Architectural Innovation in antiquity","Experimental Archaeology: brewing methods"],
-    methods: "ArcGIS, photogrammetry, statistics, digital reconstructions",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Ecosystem Acclimation in Mediterranean Forests",
-    supervisor: "Dr. Salvador Aljazairi",
-    institution: "Department of Ecology, University of Granada",
-    location: "Granada, Spain (Sierra Nevada NP)",
-    email: "sal@ugr.es",
-    disciplines: ["Ecology & Fieldwork"],
-    types: ["Experimental"],
-    description: "Study C and N cycling in Mediterranean forests and how climate change affects ecosystem processes.",
-    methods: "Stable isotopes (δ¹³C and δ¹⁵N), soil analysis, plant physiology",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Wildlife Research & Rehab in Peruvian Amazon",
-    supervisor: "Hoja Nueva Team",
-    institution: "Hoja Nueva (Wildlife Conservation)",
-    location: "Las Piedras region, Peruvian Amazon",
-    email: "info@hojanueva.org",
-    disciplines: ["Ecology & Fieldwork"],
-    types: ["Experimental"],
-    description: "Hands-on wildlife conservation, rehabilitation, ecological research and environmental education.",
-    details: ["Camera trap mammal monitoring","Anuran reproductive ecology","Habitat classification with GIS","Study design and report writing"],
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Biodesalination Technology Development",
-    supervisor: "Neha Silva",
-    institution: "Aestuarium (Biotech startup)",
-    location: "Brightlands Chemelot Campus",
-    email: "neha.silva@aestuarium.nl",
-    disciplines: ["Biotechnology","Sustainability"],
-    types: ["Experimental","Computational"],
-    description: "Conduct Life Cycle Assessments on bio-desalination using bio-engineered bacteria.",
-    methods: "LCA, modeling, sustainability analysis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Mussel Adhesive Proteins in Plants",
-    supervisor: "Dr. Julia Jansing & Assoc. Prof. Luisa Bortesi",
-    institution: "AMIBM — Molecular & Applied Biotechnology",
-    location: "Brightlands Chemelot Campus",
-    email: "julia.jansing@maastrichtuniversity.nl",
-    disciplines: ["Biotechnology"],
-    types: ["Experimental"],
-    description: "Produce mussel foot proteins (Mfps) in plants and E. coli — water-resistant adhesives for medical/industrial use.",
-    details: ["Plasmid cloning (Golden Gate)","Bacterial transformation","Protein expression and purification","SDS-PAGE & Western blot","Material property testing"],
-    methods: "Golden Gate cloning, agroinfiltration, protein purification",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Squid Ring Teeth Proteins (Suckerins)",
-    supervisor: "Dr. Julia Jansing & Assoc. Prof. Luisa Bortesi",
-    institution: "AMIBM — Molecular & Applied Biotechnology",
-    location: "Brightlands Chemelot Campus",
-    email: "julia.jansing@maastrichtuniversity.nl",
-    disciplines: ["Biotechnology"],
-    types: ["Experimental"],
-    description: "Improve production of suckerins with wet adhesion and thermoplastic properties.",
-    methods: "Golden Gate cloning, agroinfiltration, protein purification, material testing",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Silk Protein Production in Tobacco Plants",
-    supervisor: "Lara Bitar, Dr. Julia Jansing, Assoc. Prof. Luisa Bortesi",
-    institution: "AMIBM — Molecular & Applied Biotechnology",
-    location: "Brightlands Chemelot Campus",
-    email: "l.bitar@maastrichtuniversity.nl",
-    disciplines: ["Biotechnology"],
-    types: ["Experimental"],
-    description: "Use plants as factories for silk proteins for biomedical applications.",
-    methods: "DNA assembly, transient plant transformation, SDS-PAGE, Western blot",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Mycobacterium tuberculosis ESX-1 Secretion System",
-    supervisor: "Dr. Ye Gao",
-    institution: "M4I Institute — Nanoscopy",
-    location: "Maastricht",
-    email: "y.gao@maastrichtuniversity.nl",
-    disciplines: ["Biomedical Sciences","Biotechnology"],
-    types: ["Experimental"],
-    description: "Study the ESX-1 secretion system of Mtb to understand pathogenicity and virulence.",
-    methods: "Bioinformatics, protein purification, MS, cryo-EM, NMR, X-ray, SAXS",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Steroid Hormones & Gut Microbiome",
-    supervisor: "Lena Best & Prof. Christoph Kaleta",
-    institution: "Christian-Albrechts-University Kiel",
-    location: "Kiel, Germany",
-    email: "L.Best@iem.uni-kiel.de",
-    disciplines: ["Biomedical Sciences","Bioinformatics"],
-    types: ["Computational"],
-    description: "Investigate how menopause-related hormonal changes impact gut microbiome composition.",
-    methods: "Statistical methods, metabolic modeling, cohort data analysis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Host-Microbiome Interactions in Aging Female Mice",
-    supervisor: "Lena Best & Prof. Christoph Kaleta",
-    institution: "Christian-Albrechts-University Kiel",
-    location: "Kiel, Germany",
-    email: "L.Best@iem.uni-kiel.de",
-    disciplines: ["Bioinformatics","Biomedical Sciences"],
-    types: ["Computational"],
-    description: "Study sex-specific differences in host-microbiome metabolic interactions across the lifespan.",
-    methods: "Metagenomics assembly, RNA-seq, metabolic modeling, random forests, WGCNA",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Combined PPI & Alcohol Effects on Gut Microbiome",
-    supervisor: "Prof. Christoph Kaleta & Karlis Moors",
-    institution: "Christian-Albrechts-University Kiel",
-    location: "Kiel, Germany",
-    email: "k.moors@iem.uni-kiel.de",
-    disciplines: ["Bioinformatics","Biomedical Sciences"],
-    types: ["Computational"],
-    description: "Investigate combined PPI and alcohol effects on human gut microbiome composition and function.",
-    methods: "PopGen cohort analysis, microbiome composition, statistics",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Computational Modeling of Kidney Physiology & Dialysis",
-    supervisor: "Dr. Aurélie Carlier",
-    institution: "Maastricht University",
-    location: "Maastricht",
-    email: "a.carlier@maastrichtuniversity.nl",
-    disciplines: ["Biomedical Sciences","Bioinformatics"],
-    types: ["Computational"],
-    description: "Develop ODE/PDE/agent-based models to optimize kidney treatments and understand physiology in health and disease.",
-    details: ["Hemodialysis modeling","Nephron toxin transport","PBPK models for CKD/AKI","Sex-specific PBPK","Proximal tubule metabolism"],
-    methods: "ODEs, PDEs, agent-based models (VCell, Python, Matlab)",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Interactive Biological Pathways for Rare Diseases",
-    supervisor: "Dr. Friederike Ehrhart",
-    institution: "Department of Bioinformatics",
-    location: "Maastricht",
-    email: "friederike.ehrhart@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics"],
-    types: ["Computational"],
-    description: "Create and analyze biological pathway models for rare diseases using WikiPathways.",
-    methods: "PathVisio, WikiPathways, Cytoscape, omics data integration",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Metabolic Modeling of Senescence",
-    supervisor: "Dr. Marian Breuer",
-    institution: "Maastricht Centre for Systems Biology",
-    location: "Maastricht",
-    email: "marian.breuer@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics","Biomedical Sciences"],
-    types: ["Computational"],
-    description: "Construct genome-scale metabolic network models of senescent cells to understand aging.",
-    methods: "COBRA Toolbox, MATLAB, network analysis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "DRP1 Knockdown Metabolic Phenotype",
-    supervisor: "Dr. Marian Breuer & Dr. Mike Gerards",
-    institution: "Maastricht Centre for Systems Biology",
-    location: "Maastricht",
-    email: "marian.breuer@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics"],
-    types: ["Computational"],
-    description: "Analyze metabolic impact of DRP1 knockdown (mitochondrial fission factor) via computational modeling.",
-    methods: "COBRA Toolbox, MATLAB, data integration",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Metabolic Diversity of Brain Glial Cells",
-    supervisor: "Prof. Renaud Jolivet & Dr. Marian Breuer",
-    institution: "Maastricht Centre for Systems Biology",
-    location: "Maastricht",
-    email: "r.jolivet@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics","Neuroscience"],
-    types: ["Computational"],
-    description: "Build genome-scale metabolic models for different glial cell types in the brain.",
-    methods: "COBRA Toolbox, MATLAB, network analysis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Curating Metabolic Pathways for Network Models",
-    supervisor: "Prof. Jolivet, Dr. Breuer & Dr. Adriaens",
-    institution: "Maastricht Centre for Systems Biology",
-    location: "Maastricht",
-    email: "r.jolivet@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics"],
-    types: ["Computational","Literature Review"],
-    description: "Curate metabolic pathways for use in computational models of brain cells, heart disease and aging.",
-    methods: "PathVisio, WikiPathways, metabolic modeling",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Carotenoid Synthesis Modeling in Tomato",
-    supervisor: "Dr. Ruth Grosseholz",
-    institution: "Department of Systems Biology",
-    location: "Maastricht",
-    email: "Ruth.Grosseholz@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics"],
-    types: ["Computational"],
-    description: "Build a dynamic ODE model of the carotenoid biosynthetic pathway in tomato.",
-    methods: "COPASI, ODE modeling, simulation",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Signal Propagation in Plant Tissues",
-    supervisor: "Dr. Ruth Grosseholz",
-    institution: "Department of Systems Biology",
-    location: "Maastricht",
-    email: "Ruth.Grosseholz@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics"],
-    types: ["Computational"],
-    description: "Model ROS and Ca²⁺ signal propagation in plant tissues using VirtualLeaf.",
-    methods: "VirtualLeaf, reaction-diffusion, Python, image analysis",
-    dateAdded: "2024-01"
-  },
-  {
-    title: "Cytoskeleton & Membrane Protein Diffusion",
-    supervisor: "Dr. Ruth Grosseholz",
-    institution: "Department of Systems Biology",
-    location: "Maastricht",
-    email: "Ruth.Grosseholz@maastrichtuniversity.nl",
-    disciplines: ["Bioinformatics"],
-    types: ["Computational"],
-    description: "Model how the cytoskeleton influences membrane protein diffusion in plant cells via Smoldyn simulations.",
-    methods: "Smoldyn, particle-based simulation, Python/R",
-    dateAdded: "2024-01"
-  }
 ];
