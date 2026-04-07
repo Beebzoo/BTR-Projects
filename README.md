@@ -48,7 +48,7 @@ Copy this and paste it as a new entry. Fields marked **required** must be filled
     location: "Maastricht",                               // required (city or campus)
     email: "first.last@maastrichtuniversity.nl",          // required
     disciplines: ["Chemistry", "Biotechnology"],          // required - one or more, see list below
-    types: ["Experimental"],                              // required - one or more, see list below
+    types: ["Lab"],                                       // required - one or more, see list below
     description: "One or two sentences summarising the project.",  // required
     background: "Optional longer paragraph with context.",         // optional
     details: [                                            // optional - bullet points
@@ -89,10 +89,10 @@ Use one or more of these exact strings inside the `types` array.
 
 | Type | Use when… |
 |---|---|
-| `Experimental` | Lab work, fieldwork, sample collection |
-| `Theoretical` | Pure theory, derivations, proofs |
-| `Computational` | Modelling, simulation, programming, data analysis |
-| `Literature Review` | Pure literature synthesis, no new data |
+| `Lab` | Wet-lab work, fieldwork, sample collection, experimental protocols |
+| `Data Analysis` | Analysing experimental, clinical, omics or literature-derived datasets |
+| `Simulation` | Running simulations of systems (agent-based, MD, Petri nets, etc.) |
+| `Modelling` | Building mathematical, computational or conceptual models |
 
 ---
 
