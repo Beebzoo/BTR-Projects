@@ -311,10 +311,12 @@
     let html = `<div class="tags">${tags}</div>`;
     if (p.description){ html += `<h4>Overview</h4><p>${p.description}</p>`; }
     if (p.background){ html += `<h4>Background</h4><p>${p.background}</p>`; }
+    if (p.objectives && p.objectives.length){ html += `<h4>Objectives</h4><ul>${p.objectives.map(d=>`<li>${d}</li>`).join("")}</ul>`; }
     if (p.details && p.details.length){ html += `<h4>Details</h4><ul>${p.details.map(d=>`<li>${d}</li>`).join("")}</ul>`; }
     if (p.methods){ html += `<h4>Methods</h4><p>${p.methods}</p>`; }
     if (p.recommended){ html += `<h4>Recommended background</h4><p>${p.recommended}</p>`; }
     if (p.note){ html += `<h4>Note</h4><p>${p.note}</p>`; }
+    if (p.references && p.references.length){ html += `<h4>References</h4><ul>${p.references.map(d=>`<li>${d}</li>`).join("")}</ul>`; }
     html += `<div class="contact-row"><div><strong>Contact:</strong> ${p.supervisor}</div>`;
     if (p.email) html += `<div><strong>Email:</strong> <a href="mailto:${p.email}">${p.email}</a></div>`;
     if (p.location) html += `<div><strong>Location:</strong> ${p.location}</div>`;
